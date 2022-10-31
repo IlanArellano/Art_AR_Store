@@ -24,7 +24,7 @@ const Stack = createNativeStackNavigator<Screens>();
 function RootNavigator() {
   return (
     <>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
         <Stack.Screen
           name="Home"
           component={HomeScreen}
@@ -40,7 +40,7 @@ function RootNavigator() {
           component={CanvasDetailsScreen}
           options={{headerShown: false, animation: 'slide_from_right'}}
         />
-        {/*<Stack.Screen
+        <Stack.Screen
           name="Previsualize"
           component={PrevisualizeScreen}
           options={{headerShown: false, animation: 'slide_from_right'}}
@@ -49,7 +49,7 @@ function RootNavigator() {
           name="Test"
           component={ARTest}
           options={{headerShown: false}}
-  />*/}
+        />
       </Stack.Navigator>
     </>
   );

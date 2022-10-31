@@ -6,6 +6,7 @@ import {
   ViroARSceneNavigator,
   ViroARPlane,
   ViroBox,
+  ViroImage,
   type ViroTrackingState,
   type ViroTrackingReason,
 } from '@viro-community/react-viro';
@@ -23,11 +24,10 @@ const HelloWorldSceneAR = () => {
       onAnchorFound={() => console.log('onAnchorFound')}
       onAnchorUpdated={() => console.log('onAnchorUpdated')}
       onAnchorRemoved={() => console.log('onAnchorRemoved')}>
-      <ViroText
-        text={text}
-        scale={[0.5, 0.5, 0.5]}
-        position={[0, 0, -1]}
-        style={styles.helloWorldTextStyle}
+      <ViroImage
+        height={0.1}
+        width={0.1}
+        source={require('@app/assets/canvas/canvas_2.webp')}
       />
     </ViroARScene>
   );

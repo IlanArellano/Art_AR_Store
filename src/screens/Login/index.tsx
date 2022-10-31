@@ -3,6 +3,7 @@ import {Text} from 'react-native';
 import IconInput from '@app/components/IconInput';
 import CustomButton from '@app/components/CustomButton';
 import BackgroundView from '@app/components/BackGroundView';
+import type {RootStack} from '@app/types/navigation';
 import styles from './styles';
 
 interface LoginFields {
@@ -15,12 +16,16 @@ const initial: LoginFields = {
   password: '',
 };
 
-export default function LoginScreen() {
+export default function LoginScreen({route, navigation}: RootStack<'Login'>) {
   const [fields, setFields] = useState(initial);
   const [showPass, setShowPass] = useState(false);
 
   const onChange = (key: keyof LoginFields) => (value: string) =>
     setFields(prev => ({...prev, [key]: value}));
+
+  const onSubmit = () => {
+    navigation.navigate('Home');
+  };
 
   return (
     <BackgroundView source="background1" containerStyles={styles.main}>
@@ -40,7 +45,11 @@ export default function LoginScreen() {
         placeholder="Contraseña"
         secureTextEntry={!showPass}
       />
-      <CustomButton style={styles.loginButton} title="Iniciar Sesión" />
+      <CustomButton
+        onPress={onSubmit}
+        style={styles.loginButton}
+        title="Iniciar Sesión"
+      />
     </BackgroundView>
   );
 }
