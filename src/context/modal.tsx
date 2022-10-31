@@ -14,7 +14,8 @@ export interface ModalManagerProps {
 interface ModalComponentProps<IProps = any> {
   id: number;
   render: ComponentType<IProps>;
-  props: IProps & ModalManagerProps;
+  props?: IProps & ModalManagerProps;
+  isLoader?: boolean;
 }
 
 interface ModalContext<IProps = any> {

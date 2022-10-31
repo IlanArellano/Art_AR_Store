@@ -8,6 +8,7 @@ const linking: LinkingOptions<Screens> = {
     screens: {
       Login: 'login',
       Home: 'home',
+      CanvaDetails: 'canva_details',
       Test: 'test',
       NotFound: '*',
     },

@@ -1,5 +1,7 @@
 import {ComponentType, useContext, useEffect, useCallback} from 'react';
 import {ModalContext, ModalManagerProps} from '@app/context';
+import useLoadingModal from './useLoadingModal';
+import LoadingModal from '@app/components/modals/LoadingModal';
 
 type ResourceFunction<T> =
   | ((...args: any[]) => T)
@@ -20,6 +22,8 @@ interface ResourceOptions<T, IProps = any> {
   interpeter: (result: T) => boolean;
   modalOnSuccess?: ModalResourceProps<IProps>;
   modalOnFailure?: ModalResourceProps<IProps>;
+  /**Muestra un modal de carga mientras se resuelve el metodo, este modal solo se mostrara si el metodo a resolver es una promesa */
+  showLoadingModal?: boolean;
 }
 
 /**Custom hook que evalua una funcion ya sea una funcion sincrona o una promesa, el custom hook llama al metodo @see `onResult` para pasarle el
@@ -28,6 +32,7 @@ interface ResourceOptions<T, IProps = any> {
  */
 export default function useModalResource() {
   const {modals, setModals, queue, setQueue} = useContext(ModalContext);
+  const {showLoadingModal, closeLoadingModal} = useLoadingModal(LoadingModal);
 
   const addEntry = (
     component: ModalResourceProps<any>,
@@ -100,7 +105,13 @@ export default function useModalResource() {
         try {
           const exec = fn(...(args !== undefined ? args : []));
           if (exec instanceof Promise) {
-            result = await new Promise(resolve => exec.then(resolve));
+            if (options && options.showLoadingModal) {
+              showLoadingModal();
+              result = await new Promise(resolve => exec.then(resolve));
+              closeLoadingModal();
+            } else {
+              result = await new Promise(resolve => exec.then(resolve));
+            }
           } else {
             result = exec;
           }

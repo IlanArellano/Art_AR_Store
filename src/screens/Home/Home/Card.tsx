@@ -7,7 +7,9 @@ import {
   ListRenderItemInfo,
   Dimensions,
 } from 'react-native';
-import type {Canvas} from '@app/types/navigation';
+import {useNavigation} from '@react-navigation/native';
+import type {Canvas, Screens, RootStack} from '@app/types/navigation';
+
 import ImageComponent from '@app/components/ImageComponent';
 
 export default function CardComponent({
@@ -15,8 +17,15 @@ export default function CardComponent({
   item,
   separators,
 }: ListRenderItemInfo<Canvas>) {
+  const navigation = useNavigation();
+
+  const handleDetails = () => {
+    /* @ts-ignore: Unreachable code error*/
+    navigation.navigate<keyof Screens>('CanvaDetails', item);
+  };
+
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={handleDetails}>
       <View style={styles.container}>
         <ImageComponent image={item.img} style={styles.image} />
         <Text style={styles.title}>{item.name}</Text>

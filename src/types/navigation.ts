@@ -5,6 +5,8 @@ export type Screens = {
   Login: undefined;
   Home: undefined;
   Test: undefined;
+  Previsualize: Canvas;
+  CanvaDetails: Canvas;
   NotFound: undefined;
 };
 
@@ -14,7 +16,10 @@ export type HomeScreens = {
   CartTab: undefined;
 };
 
-export type RootStack = NativeStackScreenProps<Screens, keyof Screens>;
+export type RootStack<Key extends keyof Screens> = NativeStackScreenProps<
+  Screens,
+  Key
+>;
 
 export interface Canvas {
   id: number;

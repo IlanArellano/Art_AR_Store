@@ -6,7 +6,12 @@ export type Images =
   | 'home_icon'
   | 'search_icon'
   | 'user_profile_icon'
-  | 'cart_icon';
+  | 'cart_icon'
+  | 'arrow_back_icon'
+  | 'camera_icon'
+  | 'loader'
+  | 'plus'
+  | 'minus';
 
 export type CanvasImages =
   | 'canvas_1'
@@ -21,12 +26,15 @@ export type CanvasImages =
   | 'canvas_10';
 
 type ImageRequire = () => number;
+export type ImageCollection = Images | CanvasImages;
 
-const ImageDictionary: Record<Images | CanvasImages, ImageRequire> = {
+const ImageDictionary: Record<ImageCollection, ImageRequire> = {
   background1: () => require('@app/assets/background1.png'),
   home_icon: () => require('@app/assets/home-icon.png'),
   search_icon: () => require('@app/assets/search-icon.png'),
   user_profile_icon: () => require('@app/assets/user-profile-icon.png'),
+  arrow_back_icon: () => require('@app/assets/return_icon.png'),
+  camera_icon: () => require('@app/assets/camera_icon.png'),
   cart_icon: () => require('@app/assets/cart_icon.png'),
   canvas_1: () => require('@app/assets/canvas/canvas_1.webp'),
   canvas_2: () => require('@app/assets/canvas/canvas_2.webp'),
@@ -38,10 +46,13 @@ const ImageDictionary: Record<Images | CanvasImages, ImageRequire> = {
   canvas_8: () => require('@app/assets/canvas/canvas_8.webp'),
   canvas_9: () => require('@app/assets/canvas/canvas_9.webp'),
   canvas_10: () => require('@app/assets/canvas/canvas_10.webp'),
+  loader: () => require('@app/assets/loader.png'),
+  plus: () => require('@app/assets/plus_icon.png'),
+  minus: () => require('@app/assets/minus_icon.png'),
 };
 
 interface Props extends Omit<ImageProps, 'source'> {
-  image: Images | CanvasImages;
+  image: ImageCollection;
 }
 
 export default function ImageComponent(props: Props) {

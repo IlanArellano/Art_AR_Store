@@ -7,6 +7,8 @@ import linking from './LinkingConfiguration';
 
 import LoginScreen from '@app/screens/Login';
 import HomeScreen from '@app/screens/Home';
+import CanvasDetailsScreen from '@app/screens/CanvasDetails';
+import PrevisualizeScreen from '@app/screens/Previsualize';
 import ARTest from '@app/screens/ARTest';
 
 export default function Navigator() {
@@ -34,10 +36,20 @@ function RootNavigator() {
           options={{headerShown: false}}
         />
         <Stack.Screen
+          name="CanvaDetails"
+          component={CanvasDetailsScreen}
+          options={{headerShown: false, animation: 'slide_from_right'}}
+        />
+        {/*<Stack.Screen
+          name="Previsualize"
+          component={PrevisualizeScreen}
+          options={{headerShown: false, animation: 'slide_from_right'}}
+        />
+        <Stack.Screen
           name="Test"
           component={ARTest}
           options={{headerShown: false}}
-        />
+  />*/}
       </Stack.Navigator>
     </>
   );

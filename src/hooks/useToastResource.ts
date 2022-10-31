@@ -1,6 +1,8 @@
 import {useContext} from 'react';
 import {ToastContext} from '@app/context';
 import {ToastSuccess, ToastFailed} from '@app/components/toasts';
+import LoadingModal from '@app/components/modals/LoadingModal';
+import useLoadingModal from './useLoadingModal';
 
 type TypeResult = 'success' | 'failed';
 
@@ -19,6 +21,8 @@ interface ResourceOptions<T> {
   dontShowOnSuccess: boolean;
   /** Si se establece en true, si la funcion NO se resuelve correctamente no mostrara el toast, en caso de establecer el opcion @see interpeter verificara si la funcion devuelve false */
   dontShowOnFailure: boolean;
+  /**Muestra un modal de carga mientras se resuelve el metodo, este modal solo se mostrara si el metodo a resolver es una promesa */
+  showLoadingModal: boolean;
 }
 
 /**Custom hook que evalua una funcion ya sea una funcion sincrona o una promesa, el custom hook llama al metodo @see `onResult` para pasarle el
@@ -27,6 +31,9 @@ interface ResourceOptions<T> {
  */
 export default function useToastResource() {
   const {setToasts, toasts} = useContext(ToastContext);
+  const {showLoadingModal, closeLoadingModal} = useLoadingModal(LoadingModal, {
+    removeAllEntries: true,
+  });
 
   const addEntry = (type: TypeResult, title?: string) => {
     setToasts(prev =>
@@ -68,7 +75,13 @@ export default function useToastResource() {
         try {
           const exec = fn(...(args !== undefined ? args : []));
           if (exec instanceof Promise) {
-            result = await new Promise(resolve => exec.then(resolve));
+            if (options && options.showLoadingModal) {
+              showLoadingModal();
+              result = await new Promise(resolve => exec.then(resolve));
+              closeLoadingModal();
+            } else {
+              result = await new Promise(resolve => exec.then(resolve));
+            }
           } else {
             result = exec;
           }
