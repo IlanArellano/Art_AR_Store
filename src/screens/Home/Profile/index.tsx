@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {UserContext} from '@app/context';
 import ImageComponent from '@app/components/ImageComponent';
+import type {RootStack} from '@app/types/navigation';
 
 import CardInformation from './CardInformation';
 import CartInformation from './CartInformation';

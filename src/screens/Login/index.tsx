@@ -56,6 +56,7 @@ export default function LoginScreen({route, navigation}: RootStack<'Login'>) {
       <IconInput
         value={fields.email}
         onChangeText={onChange('email')}
+        keyboardType="email-address"
         style={styles.textInput}
         placeholder="Correo Electronico"
       />

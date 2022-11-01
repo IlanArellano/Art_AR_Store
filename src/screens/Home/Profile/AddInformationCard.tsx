@@ -6,7 +6,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from 'react-native';
-import {styles} from './CardInformation';
+import styles from './styles';
 import CustomButton from '@app/components/CustomButton';
 import {UserContext} from '@app/context';
 import ImageButton from '@app/components/ImageButton';
