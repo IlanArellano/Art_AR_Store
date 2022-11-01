@@ -11,7 +11,8 @@ export type Images =
   | 'camera_icon'
   | 'loader'
   | 'plus'
-  | 'minus';
+  | 'minus'
+  | 'card';
 
 export type CanvasImages =
   | 'canvas_1'
@@ -49,6 +50,7 @@ const ImageDictionary: Record<ImageCollection, ImageRequire> = {
   loader: () => require('@app/assets/loader.png'),
   plus: () => require('@app/assets/plus_icon.png'),
   minus: () => require('@app/assets/minus_icon.png'),
+  card: () => require('@app/assets/card_icon.png'),
 };
 
 interface Props extends Omit<ImageProps, 'source'> {

@@ -74,3 +74,7 @@ export const Omit = <T extends {}, Omits extends keyof T>(
   });
   return newObject;
 };
+
+/**Devuelve la suma total de todos los elementos del array de numeros */
+export const Sum = (arr: number[]) =>
+  arr.reduce((partial, a) => partial + a, 0);

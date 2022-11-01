@@ -8,7 +8,11 @@ import {
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Navigator from './navigation';
-import {ModalContextProvider, ToastContextProvider} from '@app/context';
+import {
+  ModalContextProvider,
+  ToastContextProvider,
+  UserContextProvider,
+} from '@app/context';
 import {ModalManager} from '@app/components/modals';
 import {ToastManager} from '@app/components/toasts';
 import 'react-native-gesture-handler';
@@ -22,17 +26,19 @@ const App = () => {
 
   return (
     <SafeAreaView style={[styles.app, backgroundStyle]}>
-      <ModalContextProvider>
-        <ToastContextProvider>
-          <StatusBar
-            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            backgroundColor={backgroundStyle.backgroundColor}
-          />
-          <ToastManager />
-          <ModalManager />
-          <Navigator />
-        </ToastContextProvider>
-      </ModalContextProvider>
+      <UserContextProvider>
+        <ModalContextProvider>
+          <ToastContextProvider>
+            <StatusBar
+              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+              backgroundColor={backgroundStyle.backgroundColor}
+            />
+            <ToastManager />
+            <ModalManager />
+            <Navigator />
+          </ToastContextProvider>
+        </ModalContextProvider>
+      </UserContextProvider>
     </SafeAreaView>
   );
 };

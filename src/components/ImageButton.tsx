@@ -27,12 +27,13 @@ export default function ImageButton(props: IconButtonProps) {
 }
 
 const styles = StyleSheet.create({
+  main: {},
   iconView: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
     fontSize: 12,
+    color: '#000000',
   },
 });

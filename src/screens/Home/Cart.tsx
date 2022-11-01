@@ -4,7 +4,7 @@ import {View, Text} from 'react-native';
 export default function CartTab() {
   return (
     <View>
-      <Text>Cart</Text>
+      <Text>Hola Ilan</Text>
     </View>
   );
 }

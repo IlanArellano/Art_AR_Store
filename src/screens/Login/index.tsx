@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {Text} from 'react-native';
 import IconInput from '@app/components/IconInput';
 import CustomButton from '@app/components/CustomButton';
 import BackgroundView from '@app/components/BackGroundView';
 import type {RootStack} from '@app/types/navigation';
+import useToastResource from '@app/hooks/useToastResource';
+import {ExampleUser, UserContext} from '@app/context';
 import styles from './styles';
 
 interface LoginFields {
@@ -20,10 +22,31 @@ export default function LoginScreen({route, navigation}: RootStack<'Login'>) {
   const [fields, setFields] = useState(initial);
   const [showPass, setShowPass] = useState(false);
 
+  const {setData} = useContext(UserContext);
+
+  const onResource = useToastResource();
+
   const onChange = (key: keyof LoginFields) => (value: string) =>
     setFields(prev => ({...prev, [key]: value}));
 
-  const onSubmit = () => {
+  const IsValidUser = () =>
+    (fields.email === ExampleUser.email || fields.email === ExampleUser.user) &&
+    fields.password === ExampleUser.password;
+
+  const onSubmit = async () => {
+    const valid = await onResource(IsValidUser, undefined, {
+      title: type => {
+        if (type === 'success') return 'Logeado Satisfactoriamente';
+        return 'El usuario y la contraseña es invalida';
+      },
+      interpeter: result => result,
+    });
+    if (!valid) return;
+    setData(prev => ({
+      ...prev,
+      email: ExampleUser.email,
+      user: ExampleUser.user,
+    }));
     navigation.navigate('Home');
   };
 
@@ -47,6 +70,7 @@ export default function LoginScreen({route, navigation}: RootStack<'Login'>) {
       />
       <CustomButton
         onPress={onSubmit}
+        disabled={!(fields.email && fields.password)}
         style={styles.loginButton}
         title="Iniciar Sesión"
       />
