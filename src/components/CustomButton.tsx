@@ -5,15 +5,20 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import ImageComponent, {ImageCollection} from './ImageComponent';
 
 interface CustomButtonProps extends TouchableOpacityProps {
   title: string;
+  image?: ImageCollection;
 }
 
 export default function CustomButton(props: CustomButtonProps) {
   return (
     <TouchableOpacity {...props} style={[styles.button, props.style]}>
       <Text style={styles.buttonText}>{props.title}</Text>
+      {props.image && (
+        <ImageComponent style={styles.image} image={props.image} />
+      )}
     </TouchableOpacity>
   );
 }
@@ -31,5 +36,9 @@ const styles = StyleSheet.create({
   buttonText: {
     textAlign: 'center',
     color: '#FFFFFF',
+  },
+  image: {
+    width: 20,
+    height: 20,
   },
 });

@@ -1,10 +1,11 @@
-import React from 'react';
-import {View, Text, StyleSheet, StatusBar} from 'react-native';
+import React, {useContext} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import ImageComponent from '@app/components/ImageComponent';
 import ImageButton from '@app/components/ImageButton';
 import useModalResource from '@app/hooks/useModalResource';
 import {AddCartModal} from '@app/components/modals/AddCart';
 import {ConfirmAddCartModal} from '@app/components/modals/ConfirmAddCard';
+import {UserContext} from '@app/context';
 import type {Canvas, RootStack} from '@app/types/navigation';
 
 export default function CanvasDetailsScreen({
@@ -13,14 +14,15 @@ export default function CanvasDetailsScreen({
 }: RootStack<'CanvaDetails'>) {
   const props = route.params || {};
   const {showModal} = useModalResource();
+  const {cart} = useContext(UserContext);
+  console.log({cart});
 
   const handleReturn = () => {
     navigation.navigate('Home');
   };
 
   const onAddCart = async () => {
-    const articleCount = (await showModal(AddCartModal)) as number;
-    console.log({articleCount});
+    (await showModal(AddCartModal, props)) as number;
   };
 
   const onPrevisualize = async () => {

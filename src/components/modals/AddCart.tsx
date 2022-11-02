@@ -1,21 +1,52 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import {View, Text, Animated, StyleSheet} from 'react-native';
 import {ModalManagerProps} from '@app/context';
 import {baseStyles as styles} from './styles';
 import {Button} from '@app/components/ButtonComponent';
 import ImageButton from '../ImageButton';
-import type {RootStack} from '@app/types/navigation';
+import {Canvas} from '@app/types/navigation';
+import {UserContext} from '@app/context';
 import ModalBase from './base';
 
-interface BaseProps extends ModalManagerProps, RootStack<'Home'> {}
+interface BaseProps extends Partial<ModalManagerProps>, Readonly<Canvas> {}
 
 const MAX_NUMBER_ARTICLES = 10;
 
 export function AddCartModal(props: BaseProps) {
+  const {cart, setCart} = useContext(UserContext);
+
   const viewRef = useRef(new Animated.Value(200)).current;
   const [articles, setArticles] = useState<number>(0);
+
+  const getItemFromContext = () =>
+    cart.find(canvas => canvas.item.id === props.id);
+
+  const getItem: () => Canvas = () => ({
+    id: props.id,
+    coleccion: props.coleccion,
+    height: props.height,
+    img: props.img,
+    material: props.material,
+    name: props.name,
+    price: props.price,
+    width: props.width,
+  });
+
   const handleClose = () => {
-    props.onClose(articles);
+    if (articles >= 0) {
+      const itemContext = getItemFromContext();
+      const item = getItem();
+      if (itemContext !== undefined) {
+        setCart(prev =>
+          prev
+            .filter(x => x.item.id !== item.id)
+            .concat({item: item, count: articles}),
+        );
+      } else {
+        setCart(prev => prev.concat({item: item, count: articles}));
+      }
+    }
+    if (props.onClose) props.onClose();
   };
 
   useEffect(() => {
@@ -24,6 +55,13 @@ export function AddCartModal(props: BaseProps) {
       duration: 400,
       useNativeDriver: true,
     }).start();
+  }, []);
+
+  useEffect(() => {
+    const findItem = getItemFromContext();
+    if (findItem !== undefined) {
+      setArticles(findItem.count);
+    }
   }, []);
 
   return (
