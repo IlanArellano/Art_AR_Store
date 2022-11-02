@@ -16,13 +16,43 @@ export default function CartItem({
   separators,
 }: ListRenderItemInfo<CartItems>) {
   console.log('ItemRender');
-  const {setCart} = useContext(UserContext);
+  const {cart, setCart} = useContext(UserContext);
   const {showModal} = useModalResource();
   const navigation = useNavigation();
 
   const onDelete = async () => {
     const confirm = (await showModal(ConfirmDeleteCartModal)) as boolean;
     if (confirm) setCart(prev => prev.filter(x => x.item.id !== item.item.id));
+  };
+
+  const onAdd = () => {
+    setCart(prev =>
+      prev.map(x => {
+        if (x.item.id === item.item.id)
+          return {
+            ...x,
+            count: x.count + 1,
+          };
+        return x;
+      }),
+    );
+  };
+
+  const onRemove = async () => {
+    if (item.count <= 1) {
+      await onDelete();
+      return;
+    }
+    setCart(prev =>
+      prev.map(x => {
+        if (x.item.id === item.item.id)
+          return {
+            ...x,
+            count: x.count - 1,
+          };
+        return x;
+      }),
+    );
   };
 
   const onInfo = () => {
@@ -45,9 +75,19 @@ export default function CartItem({
             <Text>{item.item.price}</Text>
           </View>
           <View style={styles.cartInformation}>
-            <ImageButton imageStyle={styles.icon} image="minus" />
+            <ImageButton
+              imageStyle={styles.icon}
+              disabled={item.count <= 0}
+              onPress={onRemove}
+              image="minus"
+            />
             <Text>{item.count}</Text>
-            <ImageButton imageStyle={styles.icon} image="plus" />
+            <ImageButton
+              imageStyle={styles.icon}
+              disabled={item.count >= 10}
+              onPress={onAdd}
+              image="plus"
+            />
           </View>
         </View>
       </View>

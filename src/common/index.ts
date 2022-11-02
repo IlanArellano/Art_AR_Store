@@ -78,3 +78,6 @@ export const Omit = <T extends {}, Omits extends keyof T>(
 /**Devuelve la suma total de todos los elementos del array de numeros */
 export const Sum = (arr: number[]) =>
   arr.reduce((partial, a) => partial + a, 0);
+
+export const CheckEmptyValues = <T>(values: T, fields: (keyof T)[]) =>
+  fields.filter(x => String(values[x]) === '').length > 0;
