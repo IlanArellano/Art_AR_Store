@@ -17,7 +17,6 @@ export default function CartItem({
   item,
   separators,
 }: ListRenderItemInfo<CartItems>) {
-  console.log('ItemRender');
   const {setCart} = useContext(UserContext);
   const {showModal} = useModalResource();
   const navigation = useNavigation();

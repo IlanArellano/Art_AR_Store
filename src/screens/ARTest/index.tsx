@@ -12,7 +12,6 @@ const HelloWorldSceneAR = () => {
   const [text, setText] = useState('Initializing AR...');
 
   function onInitialized(state: ViroTrackingState, reason: ViroTrackingReason) {
-    console.log('guncelleme', state, reason);
     setText('Hello World!');
   }
 
