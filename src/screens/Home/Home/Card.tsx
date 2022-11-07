@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   View,
   Text,
@@ -8,7 +8,9 @@ import {
   Dimensions,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import type {Canvas, Screens, RootStack} from '@app/types/navigation';
+import type {Canvas, Screens} from '@app/types/navigation';
+import {UserContext} from '@app/context';
+import {moneyFormat} from '@app/common';
 
 import ImageComponent from '@app/components/ImageComponent';
 
@@ -18,10 +20,17 @@ export default function CardComponent({
   separators,
 }: ListRenderItemInfo<Canvas>) {
   const navigation = useNavigation();
+  const {cart} = useContext(UserContext);
 
   const handleDetails = () => {
+    const findItem = cart.find(x => x.item.id === item.id);
     /* @ts-ignore: Unreachable code error*/
-    navigation.navigate<keyof Screens>('CanvaDetails', item);
+    navigation.navigate<keyof Screens>(
+      'CanvaDetails',
+      findItem
+        ? {...item, select_dimension: findItem.item.select_dimension}
+        : item,
+    );
   };
 
   return (
@@ -29,7 +38,7 @@ export default function CardComponent({
       <View style={styles.container}>
         <ImageComponent image={item.img} style={styles.image} />
         <Text style={styles.title}>{item.name}</Text>
-        <Text style={styles.price}>{item.price}</Text>
+        <Text style={styles.price}>{moneyFormat(item.price)}</Text>
       </View>
     </TouchableOpacity>
   );

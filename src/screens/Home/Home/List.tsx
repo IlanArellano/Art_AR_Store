@@ -7,7 +7,6 @@ import {
   Dimensions,
   SafeAreaView,
 } from 'react-native';
-import SearchComponent from './Search';
 import CardComponent from './Card';
 import type {BaseProps} from './Home';
 

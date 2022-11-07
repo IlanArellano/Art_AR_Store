@@ -19,6 +19,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 5,
   },
+  buttons: {
+    paddingVertical: 7,
+    marginHorizontal: 2,
+    marginVertical: 5,
+  },
+  deleteButton: {
+    backgroundColor: '#FC5454',
+  },
   cardValue: {
     fontWeight: 'bold',
   },

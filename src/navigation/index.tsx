@@ -9,6 +9,7 @@ import LoginScreen from '@app/screens/Login';
 import HomeScreen from '@app/screens/Home';
 import CanvasDetailsScreen from '@app/screens/CanvasDetails';
 import PrevisualizeScreen from '@app/screens/Previsualize';
+import PurchaseScreen from '@app/screens/Purchase';
 import ARTest from '@app/screens/ARTest';
 
 export default function Navigator() {
@@ -44,6 +45,11 @@ function RootNavigator() {
           name="Previsualize"
           component={PrevisualizeScreen}
           options={{headerShown: false, animation: 'slide_from_right'}}
+        />
+        <Stack.Screen
+          name="Purchase"
+          component={PurchaseScreen}
+          options={{headerShown: false, animation: 'fade'}}
         />
         <Stack.Screen
           name="Test"

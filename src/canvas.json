@@ -1,114 +1,264 @@
 {
   "canvas": [
     {
-    "id": 1,
-    "name": "La creación de Adán",
-    "author": "Miguel Ángel",
-    "width": 90,
-    "heigh": 60,
-    "price": 900,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_1"
-  },
+      "id": 1,
+      "name": "La creación de Adán",
+      "author": "Miguel Ángel",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 50,
+          "height": 70
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 100
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 120
+        }
+      ],
+      "price": 900,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_1"
+    },
     {
-    "id": 2,
-    "name": "La Mona Lisa",
-    "author": "Leonardo da Vinci",
-    "width": 50,
-    "heigh": 70,
-    "price": 1000,
-    "material": "Enmarcado",
-    "coleccion": "Clasico",
-    "img": "canvas_2"
-  },
+      "id": 2,
+      "name": "La Mona Lisa",
+      "author": "Leonardo da Vinci",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 60,
+          "height": 90
+        },
+        {
+          "id": 2,
+          "width": 120,
+          "height": 150
+        },
+        {
+          "id": 3,
+          "width": 150,
+          "height": 180
+        }
+      ],
+      "price": 1000,
+      "material": "Enmarcado",
+      "coleccion": "Clasico",
+      "img": "canvas_2"
+    },
     {
-    "id": 3,
-    "name": "El nacimiento de Venus",
-    "author": "Sandro Botticelli",
-    "width": 80,
-    "heigh": 80,
-    "price": 700,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_3"
-  },
+      "id": 3,
+      "name": "El nacimiento de Venus",
+      "author": "Sandro Botticelli",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 50,
+          "height": 70
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 100
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 120
+        }
+      ],
+      "price": 700,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_3"
+    },
     {
-    "id": 4,
-    "name": "Las meninas o La familia de Felipe IV",
-    "author": "Diego Velázquez",
-    "width": 100,
-    "heigh": 100,
-    "price": 500,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_4"
-  },
+      "id": 4,
+      "name": "Las meninas o La familia de Felipe IV",
+      "author": "Diego Velázquez",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 40,
+          "height": 50
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 80
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 110
+        }
+      ],
+      "price": 500,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_4"
+    },
     {
-    "id": 5,
-    "name": "Nenúfares",
-    "author": "Claude Monet",
-    "width": 120,
-    "heigh": 100,
-    "price": 800,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_5"
-  },
+      "id": 5,
+      "name": "Nenúfares",
+      "author": "Claude Monet",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 50,
+          "height": 50
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 60
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 90
+        }
+      ],
+      "price": 800,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_5"
+    },
     {
-    "id": 6,
-    "name": "La joven de la perla",
-    "author": "Johannes Vermeer",
-    "width": 80,
-    "heigh": 120,
-    "price": 1000,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_6"
-  },
+      "id": 6,
+      "name": "La joven de la perla",
+      "author": "Johannes Vermeer",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 50,
+          "height": 70
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 100
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 120
+        }
+      ],
+      "price": 1000,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_6"
+    },
     {
-    "id": 7,
-    "name": "La noche estrellada",
-    "author": "Vincent van Gogh",
-    "width": 120,
-    "heigh": 90,
-    "price": 600,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_7"
-  },
+      "id": 7,
+      "name": "La noche estrellada",
+      "author": "Vincent van Gogh",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 55,
+          "height": 75
+        },
+        {
+          "id": 2,
+          "width": 85,
+          "height": 110
+        },
+        {
+          "id": 3,
+          "width": 115,
+          "height": 155
+        }
+      ],
+      "price": 600,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_7"
+    },
     {
-    "id": 8,
-    "name": "El beso",
-    "author": "Gustav Klimt",
-    "width": 80,
-    "heigh": 80,
-    "price": 400,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_8"
-  },
+      "id": 8,
+      "name": "El beso",
+      "author": "Gustav Klimt",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 50,
+          "height": 70
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 100
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 120
+        }
+      ],
+      "price": 400,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_8"
+    },
     {
-    "id": 9,
-    "name": "Guernica",
-    "author": "Pablo Picasso",
-    "width": 100,
-    "heigh": 100,
-    "price": 500,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_9"
-  },
+      "id": 9,
+      "name": "Guernica",
+      "author": "Pablo Picasso",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 50,
+          "height": 50
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 60
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 90
+        }
+      ],
+      "price": 500,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_9"
+    },
     {
-    "id": 10,
-    "name": "Dos Fridas",
-    "author": "Frida Kahlo",
-    "width": 120,
-    "heigh": 90,
-    "price": 400,
-    "material": "Canvas",
-    "coleccion": "Clasico",
-    "img": "canvas_10"
-  }
-]  
+      "id": 10,
+      "name": "Dos Fridas",
+      "author": "Frida Kahlo",
+      "dimensions": [
+        {
+          "id": 1,
+          "width": 50,
+          "height": 70
+        },
+        {
+          "id": 2,
+          "width": 60,
+          "height": 100
+        },
+        {
+          "id": 3,
+          "width": 90,
+          "height": 120
+        }
+      ],
+      "price": 400,
+      "material": "Canvas",
+      "coleccion": "Clasico",
+      "img": "canvas_10"
+    }
+  ]
 }

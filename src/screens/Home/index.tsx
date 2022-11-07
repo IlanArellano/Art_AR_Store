@@ -24,6 +24,7 @@ export default function HomeScreen() {
             />
           ),
           headerShown: false,
+          tabBarShowLabel: false,
         }}
       />
       <Tab.Screen
@@ -37,6 +38,7 @@ export default function HomeScreen() {
             />
           ),
           headerShown: false,
+          tabBarShowLabel: false,
         }}
       />
       <Tab.Screen
@@ -50,6 +52,7 @@ export default function HomeScreen() {
             />
           ),
           headerShown: false,
+          tabBarShowLabel: false,
         }}
       />
     </Tab.Navigator>

@@ -6,9 +6,11 @@ import ImageComponent from '@app/components/ImageComponent';
 import ImageButton from '@app/components/ImageButton';
 import CustomButton from '@app/components/CustomButton';
 import {ConfirmDeleteCartModal} from '@app/components/modals/ConfirmationDeleteItem';
-import {Screens} from '@app/types/navigation';
+import {Canvas, Screens} from '@app/types/navigation';
 import {UserContext} from '@app/context';
 import {CartItems} from '@app/context';
+import {moneyFormat} from '@app/common';
+import CanvasList from '@app/canvas.json';
 
 export default function CartItem({
   index,
@@ -16,7 +18,7 @@ export default function CartItem({
   separators,
 }: ListRenderItemInfo<CartItems>) {
   console.log('ItemRender');
-  const {cart, setCart} = useContext(UserContext);
+  const {setCart} = useContext(UserContext);
   const {showModal} = useModalResource();
   const navigation = useNavigation();
 
@@ -56,13 +58,25 @@ export default function CartItem({
   };
 
   const onInfo = () => {
+    const findItem =
+      (CanvasList.canvas as Canvas[]).find(x => x.id === item.item.id) ||
+      ({} as Canvas);
     /* @ts-ignore: Unreachable code error*/
-    navigation.navigate<keyof Screens>('CanvaDetails', item.item);
+    navigation.navigate<keyof Screens>('CanvaDetails', {
+      ...findItem,
+      select_dimension: item.item.select_dimension,
+    });
   };
 
   const onPreview = () => {
+    const findItem =
+      (CanvasList.canvas as Canvas[]).find(x => x.id === item.item.id) ||
+      ({} as Canvas);
     /* @ts-ignore: Unreachable code error*/
-    navigation.navigate<keyof Screens>('Previsualize');
+    navigation.navigate<keyof Screens>('Previsualize', {
+      ...findItem,
+      select_dimension: item.item.select_dimension,
+    });
   };
 
   return (
@@ -72,7 +86,10 @@ export default function CartItem({
         <View style={styles.information}>
           <View style={styles.generalInformation}>
             <Text>{item.item.name}</Text>
-            <Text>{item.item.price}</Text>
+            <Text>{moneyFormat(item.item.price)}</Text>
+            <Text>
+              {item.item.width}cm x {item.item.height}cm
+            </Text>
           </View>
           <View style={styles.cartInformation}>
             <ImageButton

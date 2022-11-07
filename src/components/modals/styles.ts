@@ -84,6 +84,18 @@ export const baseStyles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 10,
   },
+  logoutButton: {
+    backgroundColor: '#FC5454',
+  },
+  backButton: {
+    backgroundColor: '#3E3D3D',
+  },
+  configurationTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#ffffff',
+  },
   buttonGroup: {
     marginTop: 20,
   },

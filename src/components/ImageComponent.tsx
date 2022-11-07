@@ -14,7 +14,10 @@ export type Images =
   | 'minus'
   | 'card'
   | 'information'
-  | 'delete';
+  | 'delete'
+  | 'check'
+  | 'configuration'
+  | 'logout';
 
 export type CanvasImages =
   | 'canvas_1'
@@ -31,7 +34,7 @@ export type CanvasImages =
 type ImageRequire = () => number;
 export type ImageCollection = Images | CanvasImages;
 
-const ImageDictionary: Record<ImageCollection, ImageRequire> = {
+export const ImageDictionary: Record<ImageCollection, ImageRequire> = {
   background1: () => require('@app/assets/background1.png'),
   home_icon: () => require('@app/assets/home-icon.png'),
   search_icon: () => require('@app/assets/search-icon.png'),
@@ -55,6 +58,9 @@ const ImageDictionary: Record<ImageCollection, ImageRequire> = {
   card: () => require('@app/assets/card_icon.png'),
   information: () => require('@app/assets/information_icon.png'),
   delete: () => require('@app/assets/delete_icon.png'),
+  check: () => require('@app/assets/check_icon.png'),
+  configuration: () => require('@app/assets/configuration_icon.png'),
+  logout: () => require('@app/assets/logout_icon.png'),
 };
 
 interface Props extends Omit<ImageProps, 'source'> {

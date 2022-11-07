@@ -5,8 +5,9 @@ export type Screens = {
   Login: undefined;
   Home: undefined;
   Test: undefined;
-  Previsualize: Canvas;
-  CanvaDetails: Canvas;
+  Previsualize: CanvasParams;
+  CanvaDetails: CanvasParams;
+  Purchase: undefined;
   NotFound: undefined;
 };
 
@@ -21,13 +22,27 @@ export type RootStack<Key extends keyof Screens> = NativeStackScreenProps<
   Key
 >;
 
+export interface CanvasDimensions {
+  id: number;
+  width: number;
+  height: number;
+}
+
 export interface Canvas {
   id: number;
   name: string;
-  width: number;
-  height: number;
+  dimensions: CanvasDimensions[];
+  dimension_index: number;
   price: number;
   material: 'Canvas' | 'Acrilico' | 'MDF' | 'Enmarcado';
   coleccion: 'Abstracto' | 'Minimalista' | 'Arquitectura' | 'Clasico';
   img: CanvasImages;
+}
+
+export interface CanvasParams extends Canvas {
+  select_dimension?: number;
+}
+
+export interface CanvasDirectionSelected extends Canvas {
+  dimension_selected: CanvasDimensions;
 }

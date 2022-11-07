@@ -42,6 +42,9 @@ export default function AddInformationCard() {
   };
 
   const onChange = (key: keyof Information) => (value: string) => {
+    if (key === 'expDate')
+      value =
+        value.length === 2 && !info[key].includes('/') ? `${value}/` : value;
     setInfo(prev => ({
       ...prev,
       [key]: value,

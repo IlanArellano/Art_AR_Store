@@ -1,5 +1,6 @@
 import React, {useContext} from 'react';
 import {View, Text, FlatList, StyleSheet, Dimensions} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 import ImageComponent from '@app/components/ImageComponent';
 import CartItem from './CartItem';
 import {UserContext} from '@app/context';
@@ -7,7 +8,14 @@ import {Sum} from '@app/common';
 import CustomButton from '@app/components/CustomButton';
 
 export default function CartTab() {
-  const {cart, setCart} = useContext(UserContext);
+  const {cart} = useContext(UserContext);
+  const navigation = useNavigation();
+
+  const onPurchase = () => {
+    /* @ts-ignore: Unreachable code error*/
+    navigation.navigate<keyof Screens>('Purchase');
+  };
+
   return (
     <View style={styles.main}>
       {cart.length === 0 ? (
@@ -30,6 +38,7 @@ export default function CartTab() {
           />
           <View style={styles.paymentContainer}>
             <CustomButton
+              onPress={onPurchase}
               style={styles.paymentButton}
               title={`Proceder al pago (${Sum(cart.map(x => x.count))})`}
             />

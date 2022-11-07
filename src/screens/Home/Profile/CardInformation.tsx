@@ -1,11 +1,16 @@
-import React, {useContext, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useContext} from 'react';
+import {View, Text} from 'react-native';
 import AddInformationCard from './AddInformationCard';
+import CustomButton from '@app/components/CustomButton';
 import styles from './styles';
-import {UserContext} from '@app/context';
+import {initial, UserContext} from '@app/context';
 
 export default function CardInformation() {
-  const {data} = useContext(UserContext);
+  const {data, setData} = useContext(UserContext);
+
+  const onDelete = () => {
+    setData(() => initial.data);
+  };
 
   if (!data.card_information.card_number) return <AddInformationCard />;
   return (
@@ -30,6 +35,12 @@ export default function CardInformation() {
           CVV: <Text style={styles.cardValue}>{data.card_information.cvv}</Text>
         </Text>
       </View>
+      <CustomButton
+        onPress={onDelete}
+        style={[styles.buttons, styles.deleteButton]}
+        image="delete"
+        title="Eliminar"
+      />
     </View>
   );
 }

@@ -11,7 +11,7 @@ export interface BaseProps {
 }
 
 export default function HomeTab() {
-  const [canvas, setCanvas] = useState<Canvas[]>(() => CanvasList.canvas);
+  const [canvas] = useState<Canvas[]>(() => CanvasList.canvas);
   return (
     <View>
       <SearchComponent />

@@ -5,7 +5,11 @@ import React, {
   type Dispatch,
   type SetStateAction,
 } from 'react';
-import type {Canvas} from '@app/types/navigation';
+import type {
+  Canvas,
+  CanvasDimensions,
+  CanvasParams,
+} from '@app/types/navigation';
 
 export interface CardInformation {
   card_number: string;
@@ -24,8 +28,12 @@ export interface UserWithPassword extends Omit<User, 'card_information'> {
   password: string;
 }
 
+export interface CartItem
+  extends Omit<CanvasParams, 'dimensions' | 'dimension_index'>,
+    CanvasDimensions {}
+
 export interface CartItems {
-  item: Canvas;
+  item: CartItem;
   count: number;
 }
 
@@ -36,7 +44,7 @@ export interface UserContext {
   setCart: Dispatch<SetStateAction<CartItems[]>>;
 }
 
-const initial: UserContext = {
+export const initial: UserContext = {
   data: {
     email: '',
     user: '',

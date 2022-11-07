@@ -5,10 +5,12 @@ import {baseStyles as styles} from './styles';
 import {Button} from '@app/components/ButtonComponent';
 import ImageButton from '../ImageButton';
 import {Canvas} from '@app/types/navigation';
-import {UserContext} from '@app/context';
+import {UserContext, CartItem} from '@app/context';
 import ModalBase from './base';
 
-interface BaseProps extends Partial<ModalManagerProps>, Readonly<Canvas> {}
+interface BaseProps extends Partial<ModalManagerProps>, Readonly<Canvas> {
+  select: number;
+}
 
 const MAX_NUMBER_ARTICLES = 10;
 
@@ -21,19 +23,24 @@ export function AddCartModal(props: BaseProps) {
   const getItemFromContext = () =>
     cart.find(canvas => canvas.item.id === props.id);
 
-  const getItem: () => Canvas = () => ({
-    id: props.id,
-    coleccion: props.coleccion,
-    height: props.height,
-    img: props.img,
-    material: props.material,
-    name: props.name,
-    price: props.price,
-    width: props.width,
-  });
+  const getItem: () => CartItem = () => {
+    const dimensions = props.dimensions.find(x => x.id === props.select);
+
+    return {
+      id: props.id,
+      coleccion: props.coleccion,
+      img: props.img,
+      width: dimensions?.width ?? 0,
+      height: dimensions?.height ?? 0,
+      material: props.material,
+      name: props.name,
+      price: props.price,
+      select_dimension: dimensions?.id,
+    };
+  };
 
   const handleClose = () => {
-    if (articles >= 0) {
+    if (articles > 0) {
       const itemContext = getItemFromContext();
       const item = getItem();
       if (itemContext !== undefined) {

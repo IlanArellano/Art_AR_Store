@@ -1,3 +1,7 @@
+import 'intl';
+import 'intl/locale-data/jsonp/en-US';
+import 'intl/locale-data/jsonp/es-MX';
+
 export const EmailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -81,3 +85,14 @@ export const Sum = (arr: number[]) =>
 
 export const CheckEmptyValues = <T>(values: T, fields: (keyof T)[]) =>
   fields.filter(x => String(values[x]) === '').length > 0;
+
+export const moneyFormat = (amount: number | string): string => {
+  const mount = Number(amount);
+  if (isNaN(mount)) return '0';
+  const formatter = new Intl.NumberFormat('en-US', {
+    currency: 'USD',
+    minimumFractionDigits: 2,
+    style: 'currency',
+  });
+  return formatter.format(mount);
+};
